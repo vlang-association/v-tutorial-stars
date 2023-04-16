@@ -23,14 +23,13 @@ pub:
 }
 
 fn main() {
-	// TODO: Add comments
 	response := http.get(github_repositories_url)!
 
 	repositories_result := json.decode(GitHubRepositoriesSearchAPI, response.body) or {
 		panic('An error occurred during JSON parsing: ${err}')
 	}
 
-	println('The total star count is ${repositories_result.total_count}')
+	println('The total repository count is ${repositories_result.total_count}')
 
 	for index, repository in repositories_result.items {
 		colored_description := chalk.fg(repository.description, 'cyan')
